@@ -1,0 +1,24 @@
+/* sidebar.component.scss */
+.sidebar {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  bottom: 0;
+  height: 100vh;
+  height: 100dvh;
+  width: var(--sidebar-w);
+  z-index: 100;
+  border-right: 2px solid var(--border);
+}
+
+nav { display: flex; flex-direction: column; gap: 4px; }
+
+a {
+  gap: 24pxs;
+  padding: 12px 12px;
+  white-space:nowrap;
+  cursor: pointer;
+
+}
+
+.icon { width: 24px; text-align: center; font-size: 18px; }

@@ -1,0 +1,35 @@
+<!-- header.component.html -->
+<div class="left">
+  <button class="icon-btn" (click)="layout.toggle()" aria-label="Toggle menu">☰</button>
+
+  <div class="search">
+    <span>🔍</span>
+    <input type="search" placeholder="Search..." aria-label="Search" />
+  </div>
+</div>
+
+<div class="right">
+  <button class="icon-btn" aria-label="Notifications">
+    🔔
+    @if (notifications() > 0) {
+      <span class="badge">{{ notifications() }}</span>
+    }
+  </button>
+
+  <div class="user">
+    <button class="user-btn" (click)="toggleUserMenu()" [attr.aria-expanded]="userMenuOpen()">
+      <span class="avatar">A</span>
+      <span class="name">Admin</span>
+      <span class="caret">▾</span>
+    </button>
+
+    @if (userMenuOpen()) {
+      <div class="dropdown" role="menu">
+        <a routerLink="/profile" role="menuitem" (click)="userMenuOpen.set(false)">Profile</a>
+        <a routerLink="/settings" role="menuitem" (click)="userMenuOpen.set(false)">Settings</a>
+        <hr />
+        <button role="menuitem" class="danger" (click)="logout()">Logout</button>
+      </div>
+    }
+  </div>
+</div>

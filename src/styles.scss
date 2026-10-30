@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+ /* colors */
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --danger: #dc2626;
+  --success: #16a34a;
+
+  /* spacing, shape, shadow */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 16px;  --space-4: 24px;
+  --radius: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,.1);
+
+  /* layout sizes */
+  --header-h: 60px;
+  --sidebar-w: 240px;
+  --sidebar-w-collapsed: 72px;
+}
+body{
+    margin: 0;
+    font-family: 'Inter',system-ui,sans-serif;
+}
+
+.content{
+    margin-left: var(--sidebar-w);
+    margin-top: var(--header-h);
+    padding: var(--space-4);
+    min-height: calc(100vh - var(--header-h));
+}
+
+
+@media(max-width:768px){
+    .content{
+        margin-left: 0px;
+    }
+}

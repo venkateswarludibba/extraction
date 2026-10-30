@@ -1,0 +1,90 @@
+/* header.component.scss */
+:host {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-w);
+  right: 0;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-4);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  transition: left .2s ease;
+}
+:host-context(.collapsed-layout) { left: var(--sidebar-w-collapsed); }
+
+.left, .right { display: flex; align-items: center; gap: var(--space-3); }
+
+.icon-btn {
+  position: relative;
+  width: 38px; height: 38px;
+  border: 0; border-radius: var(--radius);
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background .15s;
+  &:hover { background: var(--bg); }
+}
+
+.badge {
+  position: absolute; top: 2px; right: 2px;
+  min-width: 16px; height: 16px; padding: 0 4px;
+  border-radius: 8px;
+  background: var(--danger); color: #fff;
+  font-size: 10px; line-height: 16px; text-align: center;
+}
+
+.search {
+  display: flex; align-items: center; gap: 8px;
+  width: 320px; padding: 0 12px; height: 38px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  &:focus-within { border-color: var(--primary); }
+  input {
+    flex: 1; border: 0; outline: 0; background: transparent;
+    font: inherit; color: var(--text);
+  }
+}
+
+.user { position: relative; }
+.user-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 4px 8px; border: 0; border-radius: var(--radius);
+  background: transparent; cursor: pointer; font: inherit; color: var(--text);
+  &:hover { background: var(--bg); }
+}
+.avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--primary); color: #fff; font-weight: 600;
+}
+
+.dropdown {
+  position: absolute; right: 0; top: calc(100% + 8px);
+  min-width: 180px; padding: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+
+  a, button {
+    display: block; width: 100%; padding: 8px 12px;
+    border: 0; border-radius: 6px; background: transparent;
+    text-align: left; font: inherit; color: var(--text);
+    text-decoration: none; cursor: pointer;
+    &:hover { background: var(--bg); }
+  }
+  .danger { color: var(--danger); }
+  hr { border: 0; border-top: 1px solid var(--border); margin: 6px 0; }
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  :host { left: 0; padding: 0 var(--space-3); }
+  .search { display: none; }     /* or turn it into an icon that opens a search bar */
+  .name, .caret { display: none; }
+}
