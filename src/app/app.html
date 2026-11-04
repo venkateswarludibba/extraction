@@ -1,4 +1,114 @@
-<app-header></app-header>
-<app-sidebar></app-sidebar>
-<main class="content">fgfgdhd<router-outlet/></main>
-<app-footer></app-footer>
+
+<div class="container">
+  <h1>Automatic Camera OCR Scanner</h1>
+
+  <p class="status">{{ statusMessage }}</p>
+
+  @if (errorMessage) {
+    <p class="error">{{ errorMessage }}</p>
+  }
+
+  <div class="actions">
+    <button
+      (click)="startCamera()"
+      [disabled]="isStarting || isCameraRunning">
+      Start Camera
+    </button>
+
+    <button
+      (click)="stopCamera()"
+      [disabled]="!isCameraRunning && !isStarting">
+      Stop Camera
+    </button>
+
+    <button (click)="resetCrop()">
+      Reset Crop
+    </button>
+
+    <button (click)="selectFullFrame()">
+      Full Frame
+    </button>
+
+    <button (click)="clearText()">
+      Clear
+    </button>
+  </div>
+
+  <div class="panels">
+    <section>
+      <h2>Live Camera</h2>
+
+      <p class="hint">
+        Drag the selection box over the phone screen.
+        Drag its bottom-right corner to resize.
+      </p>
+
+      <div
+        #preview
+        class="camera-preview"
+        (pointermove)="onPointerMove($event)"
+        (pointerup)="endDrag()"
+        (pointercancel)="endDrag()">
+
+        <video
+          #video
+          autoplay
+          muted
+          playsinline>
+        </video>
+
+        @if (isCameraRunning) {
+          <div
+            class="crop-box"
+            [style.left.%]="crop.x * 100"
+            [style.top.%]="crop.y * 100"
+            [style.width.%]="crop.width * 100"
+            [style.height.%]="crop.height * 100"
+            (pointerdown)="startMove($event)">
+
+            <span class="crop-label">
+              OCR Area
+            </span>
+
+            <div
+              class="resize-handle"
+              (pointerdown)="startResize($event)">
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <section>
+      <h2>Captured OCR Area</h2>
+
+      @if (capturedImage) {
+        <img
+          class="captured-image"
+          [src]="capturedImage"
+          alt="Selected OCR image"
+        />
+      } @else {
+        <p>Waiting for captured image...</p>
+      }
+    </section>
+  </div>
+
+  <canvas #canvas hidden></canvas>
+
+  <section class="results">
+    <h2>Extracted Text</h2>
+
+    <div class="metrics">
+      <p>OCR Ready: {{ isOCRReady ? 'Yes' : 'No' }}</p>
+      <p>OCR Progress: {{ ocrProgress }}%</p>
+      <p>Confidence: {{ ocrConfidence }}%</p>
+      <p>Scans: {{ scanCount }}</p>
+      <p>Capture: {{ captureTime }} ms</p>
+      <p>OCR: {{ ocrTime }} ms</p>
+      <p>Total: {{ totalTime }} ms</p>
+    </div>
+
+    <pre>{{ extractedText || 'No text detected yet...' }}</pre>
+  </section>
+</div>

@@ -1,0 +1,156 @@
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f5f7fb;
+  color: #1e293b;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 1400px;
+  margin: auto;
+  padding: 24px;
+}
+
+h1 {
+  margin-bottom: 12px;
+}
+
+.status {
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.error {
+  color: #dc2626;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+button {
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+section {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  min-width: 0;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.hint {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.camera-preview {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #111827;
+  border-radius: 8px;
+  touch-action: none;
+}
+
+.camera-preview video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.crop-box {
+  position: absolute;
+  border: 3px solid #22c55e;
+  background: rgba(34, 197, 94, 0.10);
+  box-sizing: border-box;
+  cursor: move;
+  touch-action: none;
+}
+
+.crop-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 4px 8px;
+  background: #22c55e;
+  color: #052e16;
+  font-size: 12px;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.resize-handle {
+  position: absolute;
+  right: -7px;
+  bottom: -7px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid white;
+  border-radius: 4px;
+  background: #16a34a;
+  cursor: nwse-resize;
+  touch-action: none;
+}
+
+.captured-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+  background: #111827;
+  border-radius: 8px;
+}
+
+.results {
+  margin-top: 20px;
+}
+
+.metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+pre {
+  min-height: 120px;
+  padding: 16px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .panels {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    padding: 12px;
+  }
+}
